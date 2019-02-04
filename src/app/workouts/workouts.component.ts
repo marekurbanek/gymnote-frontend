@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { WorkoutsService } from '../workouts.service';
 
 const WORKOUT_DATA: WorkoutNode[] = [
   {
@@ -134,7 +135,7 @@ export class WorkoutsComponent {
   workouts: WorkoutNode[];
   newWorkoutName = '';
 
-    constructor(public dialog: MatDialog) {
+    constructor(public dialog: MatDialog, private workoutService: WorkoutsService) {
       this.workouts = WORKOUT_DATA;
     }
 
@@ -147,7 +148,9 @@ export class WorkoutsComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
-      this.newWorkoutName = result;
+      if (result) {
+        this.workoutService.addWorkout(result).subscribe();
+      }
     });
   }
 }

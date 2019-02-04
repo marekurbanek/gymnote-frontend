@@ -17,6 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,6 +30,7 @@ import { MatInputModule } from '@angular/material';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -42,7 +44,7 @@ import { MatInputModule } from '@angular/material';
     MatFormFieldModule
   ],
   entryComponents: [AddWorkoutComponent],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

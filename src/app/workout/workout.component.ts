@@ -11,7 +11,8 @@ export class WorkoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.workout)
+    console.log(this.workout);
   }
+
 
 }
