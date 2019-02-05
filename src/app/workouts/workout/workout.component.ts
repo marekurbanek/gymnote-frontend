@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { WorkoutsService } from '../../workouts.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -13,17 +13,42 @@ export interface DialogData {
 })
 export class WorkoutComponent implements OnInit {
   @Input() workout: WorkoutNode;
+  @Output() dataChanged = new EventEmitter<boolean>();
   displayedColumns: string[] = ['id', 'repetitions', 'weight'];
   newExerciseName: string;
+  currentWorkout: WorkoutNode;
+  showingNewSet: number;
+  repetitions: number;
+  weight: number;
 
   constructor(private workoutsService: WorkoutsService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.workout);
+    this.currentWorkout = this.workout;
   }
 
   addExercise(name: string): void {
-    this.workoutsService.addExercise(name, this.workout.id).subscribe();
+    this.workoutsService.addExercise(name, this.workout.id).subscribe(() => {
+      this.getNewData();
+    });
+  }
+
+  getNewData(): void {
+    this.dataChanged.emit(true);
+  }
+
+  toggleNewSet(exId: number): void {
+    if (exId === this.showingNewSet) {
+      this.showingNewSet = null;
+    } else {
+      this.showingNewSet = exId;
+    }
+  }
+
+  saveNewSet(exId: number): void {
+    this.workoutsService.addSet(this.weight, this.repetitions, exId).subscribe(() => {
+      this.getNewData();
+    });
   }
 
   showAddExercise(): void {

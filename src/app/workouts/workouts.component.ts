@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { WorkoutsService } from '../workouts.service';
 
@@ -130,14 +130,25 @@ export interface DialogData {
   templateUrl: './workouts.component.html',
   styleUrls: ['./workouts.component.scss']
 })
-export class WorkoutsComponent {
+export class WorkoutsComponent implements OnInit {
   panelOpenState = false;
   workouts: WorkoutNode[];
   newWorkoutName = '';
+  openedWorkoutIndex: number;
 
-    constructor(public dialog: MatDialog, private workoutService: WorkoutsService) {
-      this.workouts = WORKOUT_DATA;
-    }
+  constructor(public dialog: MatDialog, private workoutService: WorkoutsService) {
+    // this.workouts = WORKOUT_DATA;
+  }
+
+  ngOnInit(): void {
+    this.getWorkouts();
+  }
+
+  getWorkouts(): void {
+    this.workoutService.getWorkoutData().subscribe(workouts => {
+      this.workouts = workouts;
+    });
+  }
 
   openAddWorkout(): void {
     const dialogRef = this.dialog.open(AddWorkoutComponent, {
@@ -152,6 +163,10 @@ export class WorkoutsComponent {
         this.workoutService.addWorkout(result).subscribe();
       }
     });
+  }
+
+  setOpenedWorkout(id: number) {
+    this.openedWorkoutIndex = id;
   }
 }
 

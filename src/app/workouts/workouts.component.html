@@ -1,14 +1,14 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let workout of workouts">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{workout.name}}
-        </mat-panel-title>
-        <mat-panel-description>
-          {{workout.date}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-workout [workout]="workout"></app-workout>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <mat-expansion-panel *ngFor="let workout of workouts; let i = index" (opened)="setOpenedWorkout(i)" [expanded]="i === openedWorkoutIndex">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{workout.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{workout.date}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-workout [workout]="workout" (dataChanged)="getWorkouts()"></app-workout>
+  </mat-expansion-panel>
+</mat-accordion>
 <button (click)="openAddWorkout()" style="position: fixed; bottom: 10px; right: 10px;" mat-fab>New</button>
