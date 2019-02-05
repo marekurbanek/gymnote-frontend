@@ -10,7 +10,6 @@ import { WorkoutsComponent, AddWorkoutComponent } from './workouts/workouts.comp
 import {MatTreeModule} from '@angular/material/tree';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { WorkoutComponent } from './workout/workout.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -18,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { WorkoutComponent, AddExerciseComponent } from './workouts/workout/workout.component';
 
 
 
@@ -26,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     WorkoutsComponent,
     WorkoutComponent,
-    AddWorkoutComponent
+    AddWorkoutComponent,
+    AddExerciseComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatFormFieldModule
   ],
-  entryComponents: [AddWorkoutComponent],
+  entryComponents: [AddWorkoutComponent, AddExerciseComponent],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
