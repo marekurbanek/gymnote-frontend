@@ -33,6 +33,11 @@ export class WorkoutsService {
       .pipe(catchError(this.handleError));
   }
 
+  removeWorkout(workoutId: number): Observable<{}> {
+    return this.http.delete(`${this.workoutsUrl}/${workoutId}`)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse) {
     console.error(err);
     return of(err.error.errorMessage);

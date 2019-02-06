@@ -18,6 +18,7 @@ export class WorkoutComponent implements OnInit {
   newExerciseName: string;
   currentWorkout: WorkoutNode;
   showingNewSet: number;
+  showingEdit: number;
   repetitions: number;
   weight: number;
 
@@ -45,6 +46,14 @@ export class WorkoutComponent implements OnInit {
     }
   }
 
+  toggleEdit(exId: number): void {
+    if (exId === this.showingEdit) {
+      this.showingEdit = null;
+    } else {
+      this.showingEdit = exId;
+    }
+  }
+
   saveNewSet(exId: number): void {
     this.workoutsService.addSet(this.weight, this.repetitions, exId).subscribe(() => {
       this.getNewData();
@@ -61,6 +70,12 @@ export class WorkoutComponent implements OnInit {
       if (result) {
         this.addExercise(result);
       }
+    });
+  }
+
+  removeWorkout(wId: number) {
+    this.workoutsService.removeWorkout(wId).subscribe(() => {
+      this.getNewData();
     });
   }
 }
