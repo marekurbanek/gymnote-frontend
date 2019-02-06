@@ -1,5 +1,5 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let workout of workouts; let i = index" (opened)="setOpenedWorkout(i)" [expanded]="i === openedWorkoutIndex">
+  <mat-expansion-panel *ngFor="let workout of workouts; let i = index" (opened)="setOpenedWorkout(i)" (closed)="setOpenedWorkout(null)" [expanded]="i === openedWorkoutIndex">
     <mat-expansion-panel-header>
       <mat-panel-title>
         {{workout.name}}
