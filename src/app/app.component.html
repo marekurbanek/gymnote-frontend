@@ -7,6 +7,7 @@
         </li>
       </ul>
     </div>
-    <button class="btn btn-outline-success" [routerLink]="['/login']" type="button">Login</button>
+    <button *ngIf='!usersService.isLoggedIn()' class="btn btn-outline-success" [routerLink]="['/login']" type="button">Login</button>
+    <button *ngIf='usersService.isLoggedIn()' class="btn btn-outline-success" (click)='!usersService.logout()' type="button">Logout</button>  
   </nav>
 <router-outlet></router-outlet>

@@ -18,6 +18,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { WorkoutComponent, AddExerciseComponent } from './workouts/workout/workout.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptorService } from './token.interceptor.service';
 
 
 
@@ -27,12 +30,14 @@ import { WorkoutComponent, AddExerciseComponent } from './workouts/workout/worko
     WorkoutsComponent,
     WorkoutComponent,
     AddWorkoutComponent,
-    AddExerciseComponent
+    AddExerciseComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
@@ -45,7 +50,7 @@ import { WorkoutComponent, AddExerciseComponent } from './workouts/workout/worko
     MatFormFieldModule
   ],
   entryComponents: [AddWorkoutComponent, AddExerciseComponent],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, TokenInterceptorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
