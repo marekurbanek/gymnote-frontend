@@ -4,11 +4,11 @@ import { WorkoutsComponent } from './workouts/workouts.component';
 import { LoginComponent } from './authentication/login/login.component';
 
 const routes: Routes = [
-  { path: 'home', component: WorkoutsComponent },
+  { path: './', component: WorkoutsComponent },
   { path: 'workouts', component: WorkoutsComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: './', pathMatch: 'full' },
+  { path: '**', redirectTo: './', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -7,9 +7,9 @@ import { HttpErrorResponse, HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class WorkoutsService {
-  private workoutsUrl = 'http://localhost:5000/workouts';
-  private exercisesUrl = 'http://localhost:5000/exercises';
-  private setsUrl = 'http://localhost:5000/sets';
+  private workoutsUrl = '/workouts';
+  private exercisesUrl = '/exercises';
+  private setsUrl = '/sets';
 
   constructor(private http: HttpClient) { }
 

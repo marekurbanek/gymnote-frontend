@@ -66,7 +66,7 @@ export class WorkoutsComponent implements OnInit {
   `,
 })
 export class AddWorkoutComponent {
-
+  newWorkoutName: string;
   constructor(
     public dialogRef: MatDialogRef<AddWorkoutComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}

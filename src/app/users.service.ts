@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UsersService {
-  private usersUrl = 'http://localhost:5000/users';
+  private usersUrl = '/users';
   username: string;
   userId: number;
 
