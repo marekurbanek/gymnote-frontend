@@ -38,6 +38,7 @@ export class UsersService {
     this.username = '';
     this.userId = null;
     this.router.navigate(['/doctors']);
+    location.reload();
   }
 
   isLoggedIn(): boolean {
